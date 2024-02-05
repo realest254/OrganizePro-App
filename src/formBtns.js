@@ -15,7 +15,6 @@ function saveTodoItemsToLocalStorage(todoItems, project) {
 export default function populateTodoPage(project) {
     createProjectPage(project);
     const itemContainer = document.querySelector('.item-container');
-    console.log(itemContainer);
     itemContainer.innerHTML = ''; // Clear existing items
 
     const todoItems = getTodoItemsFromLocalStorage(project);
@@ -30,9 +29,10 @@ export default function populateTodoPage(project) {
         todoItems.forEach(todoObject => {
             const todoItem = document.createElement('div');
             todoItem.classList.add('todo-item');
+            
 
             const todoDetails = document.createElement('p');
-            todoDetails.textContent = `Title: ${todoObject.title}, Description: ${todoObject.description}, Due Date: ${todoObject.dueDate}, Priority: ${todoObject.priority}, Notes: ${todoObject.notes}`;
+            todoDetails.textContent = `Title: ${todoObject.title}`;
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';

@@ -1,7 +1,8 @@
-*{
+* {
     box-sizing: border-box;
 }
-html,body {
+
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -16,18 +17,39 @@ html,body {
     padding-top: 20px; 
     color: #333; 
 }
+.add-projectBtn {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: calc(50% - 1em);
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    border: none; /* Remove button border */
+    border-radius: 50%; /* Make button round */
+    font-size: 3em; /* Font size */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.add-projectBtn:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
 
 .home-section {
     width: 100%;
-    height: calc(100vh - 80px); 
+    min-height: 100vh; 
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .project-container {
-    width: clamp(200px, 50vw, 400px); 
-    height: 200px;
+    width: calc(50% - 3vw); 
+    max-width: 250px; 
+    max-height: 300px; 
+    height: 8em; 
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,31 +57,32 @@ html,body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 1.5vw; 
-}
-
-.project-container:hover {
-    transform: scale(1.05);
+    margin: 1.5vw; /* Adjust margin for smaller screens */
     transition: transform 0.3s ease;
 }
 
+
+
+.project-container:hover {
+    transform: scale(1.05);
+}
+
 .add-project-button {
-    width: clamp(150px, 30vw, 300px); 
+    width: clamp(150px, 30%, 300px); 
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 1vw 2vw; 
+    padding: 10px 20px; 
     font-size: clamp(14px, 2vw, 20px); 
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-
-
 .add-project-button:hover {
     background-color: #0056b3; 
 }
+
 /* Style for todo items */
 .todo-item {
     border: 1px solid #ccc;
@@ -92,7 +115,7 @@ html,body {
 }
 
 /* Style for todo page */
-.toDoList-section {
+.item-container {
     padding: 20px;
 }
 
@@ -111,3 +134,19 @@ html,body {
 .back-button:hover {
     background-color: #0056b3;
 }
+.backBtn, .add-toDo {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 0.5em; /* Adjust padding relative to font size */
+    border-radius: 0.5em; /* Adjust border radius relative to button size */
+    cursor: pointer;
+    margin: 1em; /* Adjust margin relative to font size */
+    font-size: 1em; /* Base font size */
+    transition: background-color 0.3s ease;
+}
+
+.backBtn:hover, .add-toDo:hover {
+    background-color: #0056b3;
+}
+

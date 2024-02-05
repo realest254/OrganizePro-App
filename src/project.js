@@ -1,4 +1,5 @@
 import createProjectPage from './item.js';
+import populateTodoPage from './formBtns.js';
 
 export default function handleClick() {
     // Get the name of the clicked div
@@ -11,6 +12,7 @@ export default function handleClick() {
         createProjectPage(divId);
         console.log(`Key '${divId}' created in local storage.`);
     } else {
+        populateTodoPage(divId);
         console.log(`Key '${divId}' already exists in local storage.`);
     }
 }
