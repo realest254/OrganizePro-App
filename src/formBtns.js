@@ -10,12 +10,14 @@ export function getTodoItemsFromLocalStorage(project) {
 function saveTodoItemsToLocalStorage(todoItems, project) {
     localStorage.setItem(project, JSON.stringify(todoItems));
 }
-
+export default function populateTodoPage(project){
+    createTodoPage(project);
+}
 // Function to populate todo page with items from local storage
-export default function populateTodoPage(project) {
+export function createTodoPage(project) {
     createProjectPage(project);
     const itemContainer = document.querySelector('.item-container');
-    itemContainer.innerHTML = ''; // Clear existing items
+    itemContainer.innerHTML = ''; 
 
     const todoItems = getTodoItemsFromLocalStorage(project);
 
@@ -25,7 +27,6 @@ export default function populateTodoPage(project) {
         noItemsMessage.textContent = 'No todo items available.';
         itemContainer.appendChild(noItemsMessage);
     } else {
-        // Populate todo items
         todoItems.forEach(todoObject => {
             const todoItem = document.createElement('div');
             todoItem.classList.add('todo-item');
@@ -33,6 +34,10 @@ export default function populateTodoPage(project) {
 
             const todoDetails = document.createElement('p');
             todoDetails.textContent = `Title: ${todoObject.title}`;
+            todoDetails.addEventListener("click", function() {
+                viewItemDetails(todoObject,project);
+            });
+            ;
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
@@ -60,4 +65,37 @@ export function addTodoItem(todoObject, project) {
     const todoItems = getTodoItemsFromLocalStorage(project);
     todoItems.push(todoObject);
     saveTodoItemsToLocalStorage(todoItems, project);
+}
+
+function viewItemDetails(todoObject, project) {
+    // Clear the existing content
+    document.body.innerHTML = '';
+    
+    // Create elements for displaying item details
+    const itemTitle = document.createElement('h2');
+    itemTitle.textContent = todoObject.title;
+
+    const itemDescription = document.createElement('p');
+    itemDescription.textContent = todoObject.description;
+
+    // Create a button for navigating back to the project item list
+    const backButton = document.createElement('button');
+    backButton.textContent = 'Back to Project';
+    backButton.classList.add('back-button');
+
+    // Add event listener to the back button
+    backButton.addEventListener('click', function() {
+        console.log(project);
+        createTodoPage(project); // Navigate back to the project item list
+    });
+
+    // Append elements to the container
+    document.body.appendChild(backButton);
+    document.body.appendChild(itemTitle);
+    document.body.appendChild(itemDescription);
+
+    // Add class names or IDs for styling purposes
+    itemTitle.classList.add('item-title');
+    itemDescription.classList.add('item-description');
+    backButton.classList.add('back-button');
 }

@@ -1,5 +1,4 @@
 import createToDoForm from './todopage.js';
-import { allStorage, createProjectDiv, createButton } from './first.js';
 import mainPageLoad from './first.js';
 
 export default function createProjectPage(divId) {
@@ -9,7 +8,7 @@ export default function createProjectPage(divId) {
     const backButton = document.createElement('button');
     backButton.textContent = 'Back';
     backButton.classList.add("backBtn");
-    backButton.addEventListener("click", goBackToMainPage);
+    backButton.addEventListener("click", mainPageLoad);
     
 
     const newToDoButton = document.createElement('button');
@@ -28,6 +27,4 @@ export default function createProjectPage(divId) {
     body.appendChild(itemContainer); 
 }
 
-function goBackToMainPage() {
-    mainPageLoad(); // Reload the main page
-}
+

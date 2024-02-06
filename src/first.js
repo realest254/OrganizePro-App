@@ -13,6 +13,7 @@ export default function mainPageLoad() {
     homeSection.classList.add('home-section');
 
     let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+    console.log(projects);
     
     if (projects.length === 0) {
         const defaultProject = createProjectDiv('Project1');
@@ -41,23 +42,20 @@ export function createProjectDiv(text) {
     projectContainer.classList.add('project-container');
     projectContainer.id = text;
     projectContainer.addEventListener("click", handleClick);
-
+    
     // Create delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('delete-projectBtn');
-    deleteButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', (event) => {
+        // Prevent the event from bubbling up to the parent div
+        event.stopPropagation();
+        
         deleteProject(text);
         projectContainer.remove(); // Remove the project from the DOM
     });
     projectContainer.appendChild(deleteButton);
 
-    // Check if Project1 is included in the projects array, and if not, add it
-    let projects = JSON.parse(localStorage.getItem('projects') || '[]');
-    if (!projects.includes('Project1')) {
-        projects.unshift('Project1'); // Add Project1 to the beginning of the array
-        localStorage.setItem('projects', JSON.stringify(projects));
-    }
     
     return projectContainer;
 }
@@ -71,19 +69,32 @@ export function createButton(text, clickHandler) {
 }
 
 export function handleAddButtonClick() {
-    const newProjectName = `Project${localStorage.length}`;
+    let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+
+    // Find the highest project number
+    let highestNumber = 0;
+    projects.forEach(project => {
+        const number = parseInt(project.replace('Project', ''));
+        if (number > highestNumber) {
+            highestNumber = number;
+        }
+    });
+
+    // Generate the next project name
+    const newProjectName = `Project${highestNumber + 1}`;
+
+    // Create the project container
     const newProject = createProjectDiv(newProjectName);
     newProject.addEventListener("click", handleClick);
     document.querySelector('.home-section').appendChild(newProject);
     localStorage.setItem(newProjectName, ''); // Store an empty string as the value
 
     // Update the projects array with the new project name
-    let projects = JSON.parse(localStorage.getItem('projects') || '[]');
-    if (!projects.includes(newProjectName)) {
-        projects.push(newProjectName); // Add the new project name to the array
-        localStorage.setItem('projects', JSON.stringify(projects));
-    }
+    projects.push(newProjectName);
+    localStorage.setItem('projects', JSON.stringify(projects));
 }
+
+
 function deleteProject(projectName) {
     let projects = JSON.parse(localStorage.getItem('projects') || '[]');
     const index = projects.indexOf(projectName);
