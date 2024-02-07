@@ -1,5 +1,5 @@
 import createProjectPage from './item.js';
-import populateTodoPage from './formBtns.js';
+import {populateTodoPage} from './formBtns.js';
 
 export default function handleClick() {
     // Get the name of the clicked div

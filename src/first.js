@@ -3,6 +3,7 @@ import handleClick from './project.js';
 
 export default function mainPageLoad() {
     const mainContainer = document.createElement('div');
+    mainContainer.id = 'home-page';
 
     const title = document.createElement("h1");
     title.textContent = 'OrganizePro';

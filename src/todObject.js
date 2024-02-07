@@ -11,7 +11,8 @@ export default function extractFormDetails(titleInput,descriptionInput,dueDateIn
         description: description,
         dueDate: dueDate,
         priority: priority,
-        notes: notes
+        notes: notes,
+        checked: false
     };
 
     return todoObject;

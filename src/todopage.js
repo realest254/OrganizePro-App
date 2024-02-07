@@ -1,7 +1,7 @@
 import './formStyle.css';
 import extractFormDetails from './todObject.js';
-import {addTodoItem} from './formBtns.js';
-import populateTodoPage from './formBtns.js';
+import {addTodoItem, populateTodoPage} from './formBtns.js';
+import createTodoPage from './formBtns.js';
 
 
 export default function createToDoForm(divId) {
@@ -96,6 +96,9 @@ export default function createToDoForm(divId) {
     cancelButton.textContent = "Cancel";
     cancelButton.classList.add("cancel-button");
     cancelButton.setAttribute("type", "button"); // Add type attribute as "button"
+    cancelButton.addEventListener("click",()=>{
+        createTodoPage(divId);
+    });
 
 
     // Append form elements to the form
