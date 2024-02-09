@@ -1,3 +1,4 @@
+import enableEdit from './edit.js';
 import createProjectPage from './item.js';
 // Function to retrieve todo items from local storage
 export function getTodoItemsFromLocalStorage(project) {
@@ -19,10 +20,7 @@ export default function createTodoPage(project) {
     const itemContainer = document.querySelector('.item-container');
     itemContainer.innerHTML = ''; 
 
-    const todoItems = getTodoItemsFromLocalStorage(project);
-
-    // Retrieve checkbox states from local storage for the current project
-    console.log(todoItems);
+    const todoItems = getTodoItemsFromLocalStorage(project);    
 
     // Populate todo items
     if (!todoItems || todoItems.length === 0) {
@@ -96,16 +94,28 @@ function viewItemDetails(todoObject, project) {
     // Create elements for displaying item details
     const itemTitle = document.createElement('h2');
     itemTitle.textContent = todoObject.title;
+    itemTitle.id = "title";
+    itemTitle.addEventListener("click",()=>{enableEdit(itemTitle,project,todoObject)});
 
-    const itemDescription = document.createElement('p');
+    const itemDescription = document.createElement('div');
     itemDescription.textContent = todoObject.description;
+    itemDescription.id = "description";
+    itemDescription.addEventListener("click",()=>{enableEdit(itemDescription,project,todoObject)});
 
-    // Create sections for object information
-    const objectInfoSection = document.createElement('div');
-    objectInfoSection.classList.add('object-info');
+    const dueDate = document.createElement('div');
+    dueDate.textContent = `DUE: ${todoObject.dueDate}`;
+    dueDate.id = "dueDate";
+    dueDate.addEventListener("click",()=>{enableEdit(dueDate,project,todoObject)});
 
-    const objectPriority = document.createElement('p');
+    const itemNotes = document.createElement('div');
+    itemNotes.textContent = todoObject.notes;
+    itemNotes.id = "notes";
+    itemNotes.addEventListener("click",()=>{enableEdit(itemNotes,project,todoObject)});
+
+    const objectPriority = document.createElement('div');
     objectPriority.textContent = `Priority: ${todoObject.priority}`;
+    objectPriority.id = "priority";
+    objectPriority.addEventListener("click",()=>{enableEdit(objectPriority,project,todoObject)});
 
     // Create a button for navigating back to the project item list
     const backButton = document.createElement('button');
@@ -117,13 +127,12 @@ function viewItemDetails(todoObject, project) {
         createTodoPage(project); // Navigate back to the project item list
     });
 
-    // Append elements to the container
-    objectInfoSection.appendChild(objectPriority);
-
     itemContainer.appendChild(backButton);
     itemContainer.appendChild(itemTitle);
+    itemContainer.appendChild(dueDate);
     itemContainer.appendChild(itemDescription);
-    itemContainer.appendChild(objectInfoSection);
+    itemContainer.appendChild(objectPriority);
+    itemContainer.appendChild(itemNotes);
 
     document.body.appendChild(itemContainer);
 
@@ -137,8 +146,7 @@ function handleCheckBox(todoObject,checkbox,project) {
     todoObject.checked = checkbox.checked;
 
     // Retrieve todo items array from local storage
-    const storedItems = localStorage.getItem(project);
-    const todoItems = storedItems ? JSON.parse(storedItems) : [];
+    const todoItems =  getTodoItemsFromLocalStorage(project);
 
     // Find the index of the todoObject in the todoItems array
     const index = todoItems.findIndex(item => item.title === todoObject.title);

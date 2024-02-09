@@ -1,7 +1,7 @@
-import './formStyle.css';
+import '../styles/formStyle.css';
 import extractFormDetails from './todObject.js';
-import {addTodoItem, populateTodoPage} from './formBtns.js';
-import createTodoPage from './formBtns.js';
+import {addTodoItem, populateTodoPage} from './todoPage.js';
+import createTodoPage from './todoPage.js';
 
 
 export default function createToDoForm(divId) {
@@ -42,9 +42,19 @@ export default function createToDoForm(divId) {
     dueDateLabel.textContent = "Due Date: ";
     const dueDateInput = document.createElement("input");
     dueDateInput.setAttribute("type", "date");
-    dueDateInput.id = 'dueDateInput'; // Set ID for the input
+    dueDateInput.id = 'dueDateInput'; 
+
+    // Set default value to current date
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    dueDateInput.value = formattedDate;
+
     dueDateDiv.appendChild(dueDateLabel);
     dueDateDiv.appendChild(dueDateInput);
+
 
     // Create priority input
     const priorityDiv = document.createElement("div");

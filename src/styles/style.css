@@ -12,7 +12,7 @@ html, body {
 }
 #home-page{
     height: 100%;
-    background-image: url(/home/catchy/Downloads/felix-mittermeier-Knwea-mLGAg-unsplash\ \(1\).jpg);
+    background-image: url(../felix-mittermeier-Knwea-mLGAg-unsplash\ \(1\).jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -29,35 +29,48 @@ html, body {
     width: 1.5em;
     height: 1.5em;
     margin-left: calc(50% - 1em);
-    background-color: #007bff; /* Blue background color */
-    color: white; /* White text color */
-    border: none; /* Remove button border */
-    border-radius: 50%; /* Make button round */
-    font-size: 3em; /* Font size */
-    cursor: pointer; /* Show pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    margin-top: 20px;
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 50%; 
+    font-size: 3em; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
 .add-projectBtn:hover {
-    background-color: #0056b3; /* Darker background color on hover */
+    background-color: #0056b3; 
 }
 
 
 .home-section {
     width: 100%;
-    height: calc(100% - 150px); 
+    height: calc(100% - 170px); 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
+.edit-link{
+    position: absolute;
+    top: 5%;
+    right: 1px;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background-image: url(../pencil.svg);
+    background-size: cover;
+}
 
 .project-container {
+    position: relative;
     width: calc(50% - 3vw); 
     max-width: 150px; 
     max-height: 150px; 
     height: 8em; 
+    padding: 5px;
     background-color: #64748b;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -67,7 +80,7 @@ html, body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 1.5vw; /* Adjust margin for smaller screens */
+    margin: 1.5vw; 
     transition: transform 0.1s ease-out;
 }
 
@@ -163,11 +176,11 @@ html, body {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 0.5em 0.5em; /* Adjust padding relative to font size */
-    border-radius: 0.5em; /* Adjust border radius relative to button size */
+    padding: 0.5em 0.5em; 
+    border-radius: 0.5em; 
     cursor: pointer;
-    margin: 1em; /* Adjust margin relative to font size */
-    font-size: 1em; /* Base font size */
+    margin: 1em; 
+    font-size: 1em; 
     transition: background-color 0.3s ease;
 }
 
@@ -175,9 +188,9 @@ html, body {
     background-color: #0056b3;
 }
 
-/* Styles for the item container */
+
 .item-container {
-    width: 100%; /* Adjust as needed */
+    width: 100%; 
     padding: 20px;
     background-color: inherit;
     border-radius: 8px;
@@ -186,11 +199,12 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: calc(100% - 68px);
+    height: 100%;
+    gap: 20px;
     overflow: auto;
 }
 
-/* Styles for the item title */
+
 .item-title {
     text-decoration: underline;
     font-size: 24px;
@@ -198,26 +212,31 @@ html, body {
     color: #333;
 }
 
-/* Styles for the item description */
 .item-description {
     font-size: 16px;
     margin-bottom: 20px;
     color: #666;
 }
 
-/* Styles for the object information section */
-.object-info {
-    margin-bottom: 20px;
+#dueDate,#priority,#description,#notes{
+    font-size: 1.5em;
+}
+#description{
+    width: 90%;
+    height: 20vh;
+    border: 1px solid #666;
 }
 
-/* Styles for the object information paragraphs */
-.object-info *{
-    margin: 0;
-    font-size: 2em;
-    color: #999;
+#notes {
+    width: 90%;
+    height: 40vh;
+    padding: 10px;
+    color: #334155;
+    border: 1px solid #737373; 
+    text-align: center;
 }
 
-/* Styles for the back button */
+
 .back-button {
     background-color: #007bff;
     color: #fff;
